@@ -250,23 +250,6 @@ ng test
 6. **Reload either tab** — the game resumes (moves fetched from DB; live WS resumes)
 7. **(Bonus)** Use replay controls in the game view to step through moves
 
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-- **Port 8080 already in use** → App uses 8081; adjust `server.port` or free 8081
-- **Cannot connect to DB / UnknownHost** → Use the Supabase IPv4 Pooler URL (5432 or 6543), with `sslmode=require`
-- **"Cannot alter type of a column used by a view"** → Avoid destructive `ddl-auto` changes; drop/recreate dependent view or run a migration (Flyway) that handles it
-
-### WebSocket Issues
-
-**No invitations received but connected:**
-- Ensure principal name is `userId` string in `JwtChannelInterceptor`
-- Client subscribes to `/user/queue/invitations`
-- Heartbeats enabled on both server and client
-
-**Material Dialog not showing (Angular standalone)** → Add `provideAnimations()` + `provideMatDialog()` in bootstrap providers
-
 ## 🧰 Development Tools
 
 - **PowerShell scaffold scripts** (backend Java packages/classes) included for clean structure generation
@@ -308,4 +291,3 @@ SERVER_PORT=8081
 
 This repository is for technical assessment/demo purposes. You may adapt it for your own portfolio; **be sure to rotate and remove all secrets** before sharing or deploying.
 
-> **⚠️ Important**: The example environment variables shown in this README are for demonstration purposes only. Always use your own unique, secure credentials and never commit them to version control.
