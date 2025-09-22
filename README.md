@@ -23,21 +23,21 @@ A production-leaning prototype of a real-time multiplayer chess app built with A
 
 🧱 Architecture
 repo-root/
-├─ backend/                    # Spring Boot 3.5.x (Java 17/22)
-│  ├─ src/main/java/com/example/chess/
-│  │  ├─ config/              # Security, CORS, WebSocket, STOMP interceptor (JWT on CONNECT)
-│  │  ├─ auth/                # AuthController, AuthService, JwtService
-│  │  ├─ user/                # User entity + repository
-│  │  ├─ lobby/               # LobbyService + LobbyController (presence, invites)
-│  │  ├─ game/                # Game, Move, GameStatus, repos, GameService, GameController, GameRules
-│  │  └─ common/              # Dto.java (single holder for REST/WS DTOs)
-│  └─ src/main/resources/
-│     └─ application.properties  # Uses env vars for DB + JWT
-└─ frontend/                   # Angular 17+ (Node 18+)
-   └─ chess-client/
-      ├─ src/app/core/        # Auth service/guard/interceptor, STOMP service, models
-      ├─ src/app/shared/      # UI components (Navbar, etc.)
-      └─ src/app/features/    # auth/, lobby/, game/ modules & pages
+├── backend/                           # Spring Boot 3.5.x (Java 17/22)
+│   ├── src/main/java/com/example/chess/
+│   │   ├── config/                    # Security, CORS, WebSocket, STOMP interceptor (JWT on CONNECT)
+│   │   ├── auth/                      # AuthController, AuthService, JwtService
+│   │   ├── user/                      # User entity + repository
+│   │   ├── lobby/                     # LobbyService + LobbyController (presence, invites)
+│   │   ├── game/                      # Game, Move, GameStatus, repos, GameService, GameController, GameRules
+│   │   └── common/                    # Dto.java (single holder for REST/WS DTOs)
+│   └── src/main/resources/
+│       └── application.properties     # Uses env vars for DB + JWT
+└── frontend/                          # Angular 17+ (Node 18+)
+    └── chess-client/
+        ├── src/app/core/              # Auth service/guard/interceptor, STOMP service, models
+        ├── src/app/shared/            # UI components (Navbar, etc.)
+        └── src/app/features/          # auth/, lobby/, game/ modules & pages
 Key realtime design choices
 
 STOMP over WebSockets (/ws), with broker prefixes: /app (client → server), /topic (broadcast), /user (DM)
@@ -53,7 +53,7 @@ Supabase account (PostgreSQL)
 IntelliJ IDEA (recommended for environment variable setup)
 
 🗄️ Supabase Setup (PostgreSQL)
-1. Create a new project
+Create a new project
 In Supabase, create a project and copy:
 
 Host (e.g. aws-1-eu-north-1.pooler.supabase.com)
@@ -62,13 +62,15 @@ User: postgres.<project-ref> (e.g., postgres.vbdtwmmxdijmbzwbboqk)
 Password: Set/reset a strong password (you control this)
 Port: 5432 (Session Pooler) or 6543 (Transaction Pooler)
 
-2. Database URL format
+Database URL format
 postgresql://postgres.<project-ref>:<DB_PASSWORD>@<region>.pooler.supabase.com:5432/postgres?sslmode=require
-3. Create schema
+Create schema
 In Supabase SQL editor, run your schema script (users, games, moves, optional invitations, and views).
 🔧 Backend Configuration (Spring Boot)
 Environment Variables Setup in IntelliJ IDEA
+
 ⚠️ SECURITY WARNING: Never commit real database credentials or secrets to version control!
+
 In IntelliJ IDEA, set these environment variables:
 
 Go to Run → Edit Configurations
@@ -276,4 +278,5 @@ Verify your CI/CD (if any) injects runtime secrets securely
 
 📜 License / Notes
 This repository is for technical assessment/demo purposes. You may adapt it for your own portfolio; be sure to rotate and remove all secrets before sharing or deploying.
+
 ⚠️ Important: The example environment variables shown in this README are for demonstration purposes only. Always use your own unique, secure credentials and never commit them to version control.
