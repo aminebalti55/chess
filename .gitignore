@@ -9,7 +9,7 @@
 *.DS_Store
 Thumbs.db
 
-# Coverage / reports
+# Coverage / reports (root)
 coverage/
 reports/
 
@@ -51,28 +51,45 @@ bazel-out/
 /Frontend/.history/*
 
 # ----------------------------
-# Spring Boot backend: Backend/
+# Spring Boot backend: Backend/  (Maven-focused)
 # ----------------------------
+/Backend/HELP.md
 /Backend/target/
+/Backend/.mvn/wrapper/maven-wrapper.jar
+!/Backend/**/src/main/**/target/
+!/Backend/**/src/test/**/target/
+
+# STS
+/Backend/.apt_generated
 /Backend/.classpath
+/Backend/.factorypath
 /Backend/.project
-/Backend/.settings/
+/Backend/.settings
+/Backend/.springBeans
+/Backend/.sts4-cache
+
+# IntelliJ IDEA
+/Backend/.idea
+/Backend/*.iws
 /Backend/*.iml
-/Backend/.idea/
-/Backend/*.log
+/Backend/*.ipr
 
-# Local overrides / secrets
-/Backend/.env
-/Backend/.env.*
-/Backend/*.local.properties
-/Backend/application-local.yml
-/Backend/application-local.yaml
-/Backend/application-local.properties
-
-# Build tools (keep wrapper scripts tracked; don't ignore .mvn)
-/Backend/.gradle/
-# If using Gradle builds; remove if Maven-only
+# NetBeans
+/Backend/nbproject/private/
+/Backend/nbbuild/
+/Backend/dist/
+/Backend/nbdist/
+/Backend/.nb-gradle/
 /Backend/build/
+!/Backend/**/src/main/**/build/
+!/Backend/**/src/test/**/build/
+
+# VS Code (backend-specific)
+/Backend/.vscode/
+
+# If you also use Gradle in Backend, keep wrapper & caches ignored
+/Backend/.gradle/
+# (Maven wrapper scripts stay tracked; only the large jar is ignored above)
 
 # ----------------------------
 # Editors & workspace (repo root)
