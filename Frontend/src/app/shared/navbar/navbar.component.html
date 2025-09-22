@@ -1,0 +1,85 @@
+<!-- src/app/shared/navbar/navbar.component.html -->
+<mat-toolbar color="primary" class="navbar">
+  <div class="navbar-content">
+    <!-- Brand / Logo -->
+    <div class="brand-section">
+      <a routerLink="/lobby" class="brand-link" *ngIf="auth.currentUser$ | async">
+        <mat-icon class="brand-icon">sports_esports</mat-icon>
+        <span class="brand-text">Chess Game</span>
+      </a>
+      <div class="brand-static" *ngIf="!(auth.currentUser$ | async)">
+        <mat-icon class="brand-icon">sports_esports</mat-icon>
+        <span class="brand-text">Chess Game</span>
+      </div>
+    </div>
+
+    <!-- Navigation & User Menu -->
+    <div class="nav-section">
+      <!-- Logged in state -->
+      <ng-container *ngIf="auth.currentUser$ | async as user; else guestTemplate">
+        <!-- Connection Status (only when logged in) -->
+        <mat-chip *ngIf="stomp.connected$ | async" class="status-chip connected">
+          <mat-icon>wifi</mat-icon>
+          Connected
+        </mat-chip>
+        <mat-chip *ngIf="!(stomp.connected$ | async)" class="status-chip disconnected">
+          <mat-icon>wifi_off</mat-icon>
+          Disconnected
+        </mat-chip>
+
+        <!-- Lobby Button -->
+        <button 
+          mat-button 
+          routerLink="/lobby" 
+          routerLinkActive="active-link"
+          class="nav-button">
+          <mat-icon>people</mat-icon>
+          <span>Lobby</span>
+        </button>
+
+        <!-- User Menu -->
+        <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+          <mat-icon>account_circle</mat-icon>
+          <span class="user-name">{{ user.displayName }}</span>
+          <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #userMenu="matMenu" class="user-menu">
+          <div class="menu-header">
+            <mat-icon>person</mat-icon>
+            <div class="user-info">
+              <div class="user-display-name">{{ user.displayName }}</div>
+              <div class="user-email">{{ user.email }}</div>
+            </div>
+          </div>
+          
+          <mat-divider></mat-divider>
+          
+          <button mat-menu-item routerLink="/lobby">
+            <mat-icon>people</mat-icon>
+            <span>Lobby</span>
+          </button>
+          
+          <mat-divider></mat-divider>
+          
+          <button mat-menu-item (click)="logout()" class="logout-item">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+
+      <!-- Guest state -->
+      <ng-template #guestTemplate>
+        <button mat-button routerLink="/auth/login" class="nav-button">
+          <mat-icon>login</mat-icon>
+          <span>Login</span>
+        </button>
+        <button mat-raised-button routerLink="/auth/register" color="accent" class="signup-button">
+          <mat-icon>person_add</mat-icon>
+          <span>Sign Up</span>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</mat-toolbar>

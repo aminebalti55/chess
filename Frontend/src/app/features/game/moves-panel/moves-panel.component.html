@@ -1,0 +1,46 @@
+<!-- src/app/features/game/moves-panel/moves-panel.component.html -->
+<mat-card class="moves-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>list_alt</mat-icon>
+      Move History
+      <span class="move-count">{{ moves.length }}</span>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-content>
+    <div class="moves-container" *ngIf="moves.length > 0; else noMoves">
+      <mat-list>
+        <mat-list-item *ngFor="let move of moves" class="move-item">
+          <div matListItemTitle class="move-header">
+            <span class="move-number">{{ move.moveNumber }}.</span>
+            <span class="move-notation">{{ getMoveDisplay(move) }}</span>
+            <mat-icon *ngIf="move.promotion" class="promotion-icon" matTooltip="Promotion">
+              military_tech
+            </mat-icon>
+          </div>
+          
+          <div matListItemLine class="move-details">
+            <span class="move-squares">{{ move.fromSquare }} → {{ move.toSquare }}</span>
+            <span class="move-time">{{ formatTime(move.playedAt) }}</span>
+          </div>
+          
+          <div matListItemMeta class="move-player">
+            <mat-icon class="player-icon">person</mat-icon>
+            <span class="player-id">{{ move.playedByUserId }}</span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <ng-template #noMoves>
+      <div class="no-moves">
+        <mat-icon class="empty-icon">sports_esports</mat-icon>
+        <p>No moves yet</p>
+        <p class="hint">Make your first move!</p>
+      </div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

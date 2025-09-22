@@ -1,0 +1,26 @@
+<!-- src/app/features/game/board/board.component.html -->
+<div class="board-wrapper">
+  <div class="board">
+    <div class="rank" *ngFor="let r of ranks">
+      <div class="rank-label">{{ r }}</div>
+      <div
+        class="square"
+        *ngFor="let f of files"
+        [class.dark]="isDark(f, r)"
+        [class.light]="!isDark(f, r)"
+        [class.selected]="selected === squareId(f, r)"
+        (click)="clickSquare(f, r)">
+        <span class="square-label">{{ getSquareLabel(f, r) }}</span>
+      </div>
+    </div>
+    <div class="file-labels">
+      <div class="file-label-spacer"></div>
+      <div class="file-label" *ngFor="let f of files">{{ f }}</div>
+    </div>
+  </div>
+  
+  <div class="board-info" *ngIf="selected">
+    <mat-icon>touch_app</mat-icon>
+    Selected: <strong>{{ selected }}</strong> - Click another square to move
+  </div>
+</div>

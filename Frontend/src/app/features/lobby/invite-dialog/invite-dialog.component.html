@@ -1,0 +1,29 @@
+<!-- src/app/features/lobby/invite-dialog/invite-dialog.component.html -->
+<div class="invite-dialog">
+  <div class="dialog-icon">
+    <mat-icon>mail</mat-icon>
+  </div>
+  
+  <h2 mat-dialog-title>Game Invitation</h2>
+  
+  <mat-dialog-content>
+    <div class="invitation-message">
+      <p class="player-info">
+        <mat-icon>person</mat-icon>
+        <strong>{{ data.fromUser.displayName }}</strong>
+      </p>
+      <p class="message">has invited you to play a chess game!</p>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="decline()" class="decline-btn">
+      <mat-icon>close</mat-icon>
+      Decline
+    </button>
+    <button mat-raised-button color="primary" (click)="accept()" class="accept-btn">
+      <mat-icon>check</mat-icon>
+      Accept
+    </button>
+  </mat-dialog-actions>
+</div>

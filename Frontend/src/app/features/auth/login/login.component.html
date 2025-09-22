@@ -1,0 +1,61 @@
+<!-- src/app/features/auth/login/login.component.html -->
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="logo">
+          <mat-icon>sports_esports</mat-icon>
+          <span>Chess Game</span>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Sign in to continue playing</p>
+      
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="your@email.com">
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-error *ngIf="form.controls.email.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="form.controls.email.hasError('email')">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+          <mat-icon matPrefix>lock</mat-icon>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="form.controls.password.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+        <div *ngIf="error" class="error-message">
+          <mat-icon>error</mat-icon>
+          {{ error }}
+        </div>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width submit-btn" [disabled]="loading">
+          <span *ngIf="!loading">Sign In</span>
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+        </button>
+      </form>
+    </mat-card-content>
+    
+    <mat-card-footer>
+      <p class="footer-text">
+        Don't have an account? 
+        <a routerLink="/auth/register" class="link">Create one</a>
+      </p>
+    </mat-card-footer>
+  </mat-card>
+</div>

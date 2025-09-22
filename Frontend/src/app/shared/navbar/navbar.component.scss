@@ -1,0 +1,168 @@
+// src/app/shared/navbar/navbar.component.scss
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.brand-section {
+  .brand-link, .brand-static {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+    
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+  
+  .brand-icon {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .brand-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+}
+
+.nav-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-chip {
+  margin-right: 0.5rem;
+  height: 28px;
+  font-size: 0.75rem;
+  
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+  
+  &.connected {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  &.disconnected {
+    background-color: #f44336;
+    color: white;
+  }
+}
+
+.nav-button {
+  mat-icon {
+    margin-right: 0.25rem;
+  }
+  
+  &.active-link {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  
+  .user-name {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+  
+  .dropdown-icon {
+    margin-left: -0.25rem;
+  }
+}
+
+.signup-button {
+  mat-icon {
+    margin-right: 0.25rem;
+  }
+}
+
+::ng-deep .user-menu {
+  min-width: 280px;
+  margin-top: 8px;
+  
+  .menu-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    
+    mat-icon {
+      font-size: 2.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      color: #667eea;
+    }
+    
+    .user-info {
+      flex: 1;
+      
+      .user-display-name {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 0.25rem;
+      }
+      
+      .user-email {
+        font-size: 0.85rem;
+        color: #666;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  
+  .mat-mdc-menu-item {
+    mat-icon {
+      margin-right: 0.75rem;
+      color: #666;
+    }
+  }
+  
+  .logout-item {
+    mat-icon {
+      color: #f44336;
+    }
+    
+    span {
+      color: #f44336;
+    }
+  }
+}

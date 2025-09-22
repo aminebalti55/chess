@@ -1,0 +1,36 @@
+<!-- src/app/features/game/game.component.html -->
+<mat-toolbar color="primary" class="game-toolbar">
+  <button mat-icon-button routerLink="/lobby">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <mat-icon class="toolbar-icon">sports_esports</mat-icon>
+  <span>Game #{{ gameId }}</span>
+  <span class="spacer"></span>
+  
+  <!-- Turn indicator -->
+  <mat-chip class="turn-chip" [class.white-turn]="(turn$ | async) === 'WHITE'" [class.black-turn]="(turn$ | async) === 'BLACK'">
+    <mat-icon>{{ (turn$ | async) === 'WHITE' ? 'radio_button_unchecked' : 'circle' }}</mat-icon>
+    {{ (turn$ | async) }}'s turn
+  </mat-chip>
+  
+  <span class="user-name">{{ (auth.currentUser$ | async)?.displayName }}</span>
+  <button mat-icon-button (click)="auth.logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="game-container">
+  <div class="game-content">
+    <div class="board-section">
+      <mat-card class="board-card">
+        <mat-card-content>
+          <app-board (move)="onMove($event)"></app-board>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="moves-section">
+      <app-moves-panel [moves]="(moves$ | async) ?? []"></app-moves-panel>
+    </div>
+  </div>
+</div>

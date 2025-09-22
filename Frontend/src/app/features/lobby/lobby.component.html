@@ -1,0 +1,62 @@
+<!-- src/app/features/lobby/lobby.component.html -->
+<div class="lobby-container">
+  <!-- Debug Panel (remove this after testing) -->
+  <mat-card class="debug-card" style="margin-bottom: 1rem; background-color: #fff3cd;">
+    <mat-card-header>
+      <mat-card-title style="font-size: 1rem;">
+        <mat-icon>bug_report</mat-icon>
+        Debug Info
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Current User:</strong> {{ (auth.currentUser$ | async)?.displayName }} (ID: {{ (auth.currentUser$ | async)?.id }})</p>
+      <p><strong>Online Users:</strong> {{ users.length }}</p>
+      <p><strong>Users List:</strong> {{ users | json }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="players-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>people</mat-icon>
+        Online Players
+        <mat-chip class="count-chip">{{ users.length }}</mat-chip>
+      </mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <mat-list *ngIf="users.length > 0; else noPlayers">
+        <mat-list-item *ngFor="let user of users" class="player-item">
+          <mat-icon matListItemIcon class="player-icon">person</mat-icon>
+          
+          <div matListItemTitle class="player-info">
+            <span class="player-name">{{ user.displayName }}</span>
+            <mat-chip *ngIf="(auth.currentUser$ | async)?.id === user.id" class="you-chip">
+              You
+            </mat-chip>
+          </div>
+          
+          <div matListItemMeta>
+            <button 
+              mat-raised-button 
+              color="primary"
+              (click)="invite(user.id)"
+              [disabled]="(auth.currentUser$ | async)?.id === user.id"
+              class="invite-btn">
+              <mat-icon>send</mat-icon>
+              Invite
+            </button>
+          </div>
+        </mat-list-item>
+      </mat-list>
+      
+      <ng-template #noPlayers>
+        <div class="no-players">
+          <mat-icon class="empty-icon">people_outline</mat-icon>
+          <p>No other players online</p>
+          <p class="hint">Waiting for players to join...</p>
+        </div>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,103 @@
+# ----------------------------
+# Repo-wide ignores
+# ----------------------------
+# Logs & temp
+*.log
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# Coverage / reports
+coverage/
+reports/
+
+# Root-level Node (if any)
+node_modules/
+dist/
+tmp/
+out-tsc/
+bazel-out/
+
+# ----------------------------
+# Angular frontend: Frontend/
+# ----------------------------
+/Frontend/node_modules/
+/Frontend/dist/
+/Frontend/tmp/
+/Frontend/out-tsc/
+/Frontend/bazel-out/
+/Frontend/.angular/
+/Frontend/.cache/
+/Frontend/coverage/
+/Frontend/npm-debug.log
+/Frontend/yarn-error.log
+/Frontend/pnpm-debug.log
+/Frontend/*.log
+
+# Frontend env/config secrets (keep out of git)
+/Frontend/.env
+/Frontend/.env.*.local
+/Frontend/.env.local
+
+# Frontend IDE settings
+/Frontend/.idea/
+/Frontend/.vscode/*
+!/Frontend/.vscode/settings.json
+!/Frontend/.vscode/tasks.json
+!/Frontend/.vscode/launch.json
+!/Frontend/.vscode/extensions.json
+/Frontend/.history/*
+
+# ----------------------------
+# Spring Boot backend: Backend/
+# ----------------------------
+/Backend/target/
+/Backend/.classpath
+/Backend/.project
+/Backend/.settings/
+/Backend/*.iml
+/Backend/.idea/
+/Backend/*.log
+
+# Local overrides / secrets
+/Backend/.env
+/Backend/.env.*
+/Backend/*.local.properties
+/Backend/application-local.yml
+/Backend/application-local.yaml
+/Backend/application-local.properties
+
+# Build tools (keep wrapper scripts tracked; don't ignore .mvn)
+/Backend/.gradle/
+# If using Gradle builds; remove if Maven-only
+/Backend/build/
+
+# ----------------------------
+# Editors & workspace (repo root)
+# ----------------------------
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code (repo root)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ----------------------------
+# Miscellaneous (legacy Angular paths at repo root)
+# ----------------------------
+/.angular/cache
+.sass-cache/
+connect.lock
+/libpeerconnection.log
+testem.log
+/typings
